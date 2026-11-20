@@ -19,7 +19,7 @@ Prérequis : Python 3.10+, ffmpeg, Claude Code.
 Dans Claude Code :
 
 ```
-/plugin marketplace add <ton-pseudo>/gta6-clipper
+/plugin marketplace add zedit1555/gta6-clipper
 /plugin install gta6-clipper@gta6-clipper
 ```
 
