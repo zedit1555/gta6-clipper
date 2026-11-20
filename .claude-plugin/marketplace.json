@@ -1,0 +1,12 @@
+{
+  "name": "gta6-clipper",
+  "description": "GTA 6 vertical clip engine for Claude Code",
+  "owner": { "name": "Abdelaaziz BAKIR" },
+  "plugins": [
+    {
+      "name": "gta6-clipper",
+      "source": "./",
+      "description": "Find moments, cut 9:16 clips with captions/hook/credit, check rules before posting."
+    }
+  ]
+}

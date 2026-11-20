@@ -1,0 +1,11 @@
+{
+  "_note": "Exemple: recopie les règles de la page de la campagne (Whop Content Rewards, etc.).",
+  "name": "Exemple - campagne @streamer_test",
+  "creator": "@streamer_test",
+  "min_seconds": 7,
+  "max_seconds": 60,
+  "required_hashtags": ["#gta6"],
+  "required_mentions": ["@streamer_test"],
+  "max_hashtags": 4,
+  "banned_phrases": []
+}
