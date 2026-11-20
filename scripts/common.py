@@ -119,3 +119,39 @@ def load_rules(campaign: str | None) -> dict:
             else:
                 rules[k] = v
     return rules
+
+
+# ---------------------------------------------------------------- permissions
+CREATORS_FILE = Path.cwd() / "creators.json"
+
+
+def load_creators() -> list[dict]:
+    """creators.json in the working folder: creators who allowed you to clip them."""
+    data = load_json(CREATORS_FILE, [])
+    return data.get("creators", []) if isinstance(data, dict) else data
+
+
+def _norm_handle(s: str | None) -> str:
+    s = (s or "").strip().lower().rstrip("/")
+    s = re.sub(r"^https?://(www\.|m\.)?(youtube\.com|twitch\.tv)/", "", s)
+    s = re.sub(r"^(channel/|c/|user/)", "", s)
+    return s.lstrip("@")
+
+
+def permission_for(info: dict, creators: list[dict] | None = None) -> tuple[str | None, str]:
+    """Return (kind, detail). kind = 'cc' | 'allowed' | None.
+
+    'cc'      : YouTube video under Creative Commons Attribution (reuse allowed, credit required)
+    'allowed' : channel listed in creators.json (clipping campaign or written permission)
+    """
+    lic = (info.get("license") or "").lower()
+    if "creative commons" in lic:
+        return "cc", "Creative Commons (CC BY)"
+    ids = {_norm_handle(info.get(k)) for k in
+           ("channel_id", "uploader_id", "channel_url", "uploader_url", "channel", "uploader")}
+    ids.discard("")
+    for c in creators if creators is not None else load_creators():
+        for ch in c.get("channels", []):
+            if _norm_handle(ch) in ids:
+                return "allowed", c.get("name") or ch
+    return None, "ni Creative Commons, ni dans creators.json"

@@ -11,8 +11,10 @@ Run them from the user's working folder (jobs are created in `./jobs/`). Reply i
 ## 0. Rights first
 Ask (once per source) where the video comes from:
 - **their own gameplay** → fine.
-- **another creator** → only if there is a clipping campaign or written permission for that creator.
-  Note the creator handle; it must appear as the credit. If neither, stop and explain why.
+- **another creator** → only if the video is Creative Commons (CC BY) or the creator is in
+  `creators.json` (clipping campaign or written permission). `fetch.py` refuses other links.
+  The creator handle must appear as the credit. If neither, stop and explain why.
+- **no video at all** → use the `find-videos` skill.
 Never clip leaks, pirated builds, "play early"/"free download" content, cheats or mod menus.
 
 ## 1. Find moments

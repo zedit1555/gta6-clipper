@@ -1,6 +1,6 @@
 {
   "name": "gta6-clipper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Turn GTA 6 gameplay and streams into vertical 1080x1920 clips: find the best moments, cut with captions, hook and credit, check the rules before posting.",
   "author": { "name": "Abdelaaziz BAKIR", "url": "https://abdelaziz-bakir.netlify.app/" },
   "license": "MIT",

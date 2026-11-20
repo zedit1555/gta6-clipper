@@ -1,0 +1,11 @@
+{
+  "_note": "Copie ce fichier en creators.json dans ton dossier de travail. Liste UNIQUEMENT les créateurs qui t'ont autorisé à les clipper (campagne de clipping ou accord écrit). Garde la preuve.",
+  "creators": [
+    {
+      "name": "StreamerX",
+      "channels": ["@StreamerX", "https://www.twitch.tv/streamerx", "UCxxxxxxxxxxxxxxxxxxxxxx"],
+      "campaign": "campaigns/streamerx.json",
+      "proof": "Campagne Whop Content Rewards, rejointe le 2026-11-20"
+    }
+  ]
+}

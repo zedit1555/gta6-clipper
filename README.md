@@ -3,6 +3,8 @@
 Plugin **Claude Code** qui transforme une partie de GTA 6 ou un stream en **clips verticaux 1080x1920**
 prêts pour TikTok, YouTube Shorts et Instagram Reels :
 
+0. **cherche des vidéos GTA 6 récentes sur YouTube que tu as le droit de clipper** (Creative Commons ou
+   créateurs qui t'ont autorisé), classées par vues/heure
 1. **trouve les meilleurs moments** (pics de volume, mots d'excitation dans la transcription, « most replayed » YouTube)
 2. **monte le clip** : sous-titres mot par mot, accroche en haut, crédit du créateur, son à -14 LUFS,
    3 mises en page (plein écran, fond flouté, facecam en haut)
@@ -46,13 +48,28 @@ python scripts/cut.py jobs/<id> --pick 2 --layout facecam --facecam 0.74,0.02,0.
 python scripts/check.py jobs/<id>/edits/clip_1.mp4 --caption "Il a osé 😳 #gta6 #gtavi @mapage"
 ```
 
-Les liens (YouTube, Twitch VOD…) sont téléchargés avec yt-dlp :
-`python scripts/moments.py "https://www.youtube.com/watch?v=..." --creator "@streamer"`
+### Pas de vidéo à toi ? Chercher sur YouTube
+
+```bash
+python scripts/find.py --query "gta 6" --hours 48            # vidéos autorisées, classées par vues/heure
+python scripts/find.py --cc-only --query "gta 6 gameplay"    # seulement Creative Commons
+python scripts/find.py --auto 2                              # + détecte les moments des 2 meilleures
+```
+
+Une vidéo n'est gardée (et téléchargée) que si :
+- elle est sous licence **Creative Commons (CC BY)** sur YouTube : réutilisation autorisée, crédit obligatoire
+  (ajouté automatiquement : « via @chaîne (CC BY) ») ;
+- ou sa chaîne est dans **`creators.json`** : créateurs dont tu as rejoint la campagne de clipping ou qui t'ont
+  donné leur accord par écrit (copie `creators.example.json`).
+
+Les autres vidéos sont refusées par `fetch.py`. Si tu as l'accord du créateur par un autre moyen :
+`--i-have-permission`.
 
 | Script | Rôle |
 |---|---|
 | `doctor.py` | vérifie Python, ffmpeg et les paquets |
-| `fetch.py` | crée un job depuis un fichier ou un lien |
+| `find.py` | cherche sur YouTube les vidéos GTA 6 récentes que tu peux clipper, classées par vues/heure |
+| `fetch.py` | crée un job depuis un fichier ou un lien (vérifie l'autorisation) |
 | `moments.py` | détecte et classe les moments (12-30 s par défaut), écrit `moments.json` + `transcript.json` |
 | `cut.py` | rend le clip 9:16 avec sous-titres, accroche, crédit, son normalisé |
 | `check.py` | contrôle le clip et le texte du post ; code de sortie 1 s'il y a un FAIL |

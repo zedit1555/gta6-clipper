@@ -210,12 +210,15 @@ def main() -> None:
     ap.add_argument("--model", default="small", help="modèle Whisper: tiny, base, small, medium, large-v3")
     ap.add_argument("--lang", default=None, help="langue parlée (fr, en, ...). Auto si absent")
     ap.add_argument("--creator", help="crédit, si le job est créé ici")
+    ap.add_argument("--i-have-permission", action="store_true", help="transmis à fetch.py pour un lien")
     args = ap.parse_args()
 
     if is_url(args.job) or (Path(args.job).is_file()):
         cmd = [sys.executable, str(Path(__file__).with_name("fetch.py")), args.job]
         if args.creator:
             cmd += ["--creator", args.creator]
+        if args.i_have_permission:
+            cmd.append("--i-have-permission")
         out = subprocess.run(cmd, capture_output=True, text=True)
         print(out.stdout, end="")
         if out.returncode != 0:

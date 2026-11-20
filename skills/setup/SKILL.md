@@ -16,7 +16,8 @@ Call that path `$SCRIPTS` below. Reply in the user's language.
      (suggest a virtual env: `python -m venv .venv`).
 3. Run `doctor.py` again until it prints "Tout est prêt."
 4. In the user's current folder create `campaigns/` and copy
-   `<plugin root>/campaigns/example.json` into it as a template.
+   `<plugin root>/campaigns/example.json` into it as a template. Copy
+   `<plugin root>/creators.example.json` to `creators.json` with an empty `creators` list.
 5. Ask the user 3 quick questions and write the answers to `clipper.md` in the current folder:
    - which page / handle they post from,
    - which languages their audience speaks,
